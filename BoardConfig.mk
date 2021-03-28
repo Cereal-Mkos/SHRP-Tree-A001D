@@ -72,6 +72,16 @@ TARGET_KERNEL_CONFIG := ASUS_A001D_defconfig
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8953
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8953
+TARGET_NO_BOOTLOADER := true
+
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
+TW_INCLUDE_CRYPTO := true
+BOARD_USES_QCOM_DECRYPTION := true
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -81,8 +91,29 @@ PLATFORM_VERSION := 16.1.0
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_INCLUDE_RESETPROP := true
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 120
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hidl.base@1.0 \
+    libion \
+    libxml2 \
+    libicuuc.so
+    
+TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so
+
+# TWRP Debug Flags
+TARGET_USES_LOGD := true
+TWRP_INCLUDE_LOGCAT := true
 
 # NOTE - Dont use '-' or blank spaces in flag values , otherwise it will create build errors or other bugs in recovery (Excluding SHRP_PATH,SHRP_REC). 
 # Path of your SHRP Tree
