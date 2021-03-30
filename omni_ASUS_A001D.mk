@@ -22,12 +22,17 @@ $(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# Inherit from ASUS_A001D_2 device
+# Inherit from ASUS_A001D device
 $(call inherit-product, device/asus/ASUS_A001D/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, vendor/omni/config/gsm.mk)
+
+#Platform
+TARGET_BOARD_PLATFORM := msm8953
+
+PRODUCT_PROPERTY_OVERRIDES += ro.hardware.keystore=$(TARGET_BOARD_PLATFORM)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := ASUS_A001D

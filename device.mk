@@ -17,4 +17,10 @@
 #
 
 LOCAL_PATH := device/asus/ASUS_A001D
+ 
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe \
 
+
+PRODUCT_PACKAGES += tzdata_twrp
